@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Calculator Form</title>
+<link rel="stylesheet" href="owl.carousel.min.css">
+<link rel="stylesheet" href="owl.theme.default.min.css">
+
+<script src="jquery.min.js"></script>
+
+<script src="owl.carousel.min.js"></script>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+  }
+  .calculator-form {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  .form-group {
+    margin-bottom: 10px;
+  }
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  button {
+    margin-right: 10px;
+  }
+    .owl-carousel .item {
+    text-align: center;
+    padding: 20px;
+  }
+</style>
+</head>
+<body>
+<form class="calculator-form">
+  <div class="form-group">
+    <label for="num1">Number 1:</label>
+    <input type="number" id="num1" value="0">
+  </div>
+  <div class="form-group">
+    <label for="num2">Number 2:</label>
+    <input type="number" id="num2" value="0">
+  </div>
+  <div class="form-group">
+    <label for="operator">Operation:</label>
+    <select id="operator">
+      <option value="+">Add (+)</option>
+      <option value="-">Subtract (-)</option>
+      <option value="*">Multiply (*)</option>
+      <option value="/">Divide (/)</option>
+    </select>
+  </div>
+  <button type="button" onclick="performCalculation()">Calculate</button>
+  <button type="reset">Reset</button>
+  <div class="form-group">
+    <label for="result">Result:</label>
+    <output id="result"></output>
+  </div>
+</form>
+<div class="owl-carousel owl-theme">
+  <div class="item"><h3>Explain “repaint” and “reflow” of the webpage.</h3>
+		  
+            <p> Repaint is when the look but not layout of a webpage changes, needing a visual update.
+Reflow is when the layout changes, requiring the whole page to be recalculated and redrawn.</p></div>
+  <div class="item"><h3> How does JavaScript on the webpage affects the page load speed and performance?</h3>
+		  
+            <p> JavaScript can slow down a webpage if it’s large or used inefficiently, but techniques like async loading help.</p></div>
+  <div class="item"><h3>What is “minification” of the script? Why it is useful to minify your scripts?</h3>
+		  
+            <p> Minification makes JavaScript files smaller by removing extra characters, which speeds up page loading.</p></div>
+  <div class="item"><h3>What is a JS Web Worker and when do we need it?</h3>
+		  
+            <p>A Web Worker lets JavaScript run in the background without slowing down the webpage, useful for heavy tasks.</p></div>
+ <div class="item"><h4>Sources</h4>
+    <p><a href="https://medium.com/swlh/what-the-heck-is-repaint-and-reflow-in-the-browser-b2d0fb980c08">1</a></p>
+    <p><a href="https://dev.to/gopal1996/understanding-reflow-and-repaint-in-the-browser-1jbg">2</a></p>
+    <p><a href="https://developer.mozilla.org/en-US/docs/Learn/Performance/JavaScript">3</a></p>
+</div>
+</div>
+<script>
+function calculate(num1, operator, num2) {
+  switch(operator) {
+    case '+':
+      return num1 + num2;
+    case '-':
+      return num1 - num2;
+    case '*':
+      return num1 * num2;
+    case '/':
+      if(num2 != 0) {
+        return num1 / num2;
+      } else {
+        return "Error: Division by zero is not allowed.";
+      }
+    default:
+      return "Error: Invalid operator.";
+  }
+}
+
+function performCalculation() {
+  var num1 = parseFloat(document.getElementById('num1').value);
+  var operator = document.getElementById('operator').value;
+  var num2 = parseFloat(document.getElementById('num2').value);
+  var result = calculate(num1, operator, num2);
+  document.getElementById('result').value = "The result is: " + result;
+}
+
+$(document).ready(function(){
+  $(".owl-carousel").owlCarousel({
+    loop: true,
+    margin: 10,
+    nav: true,
+    responsive: {
+      0: { items: 1 },
+      600: { items: 3 },
+      1000: { items: 5 }
+    }
+  });
+});
+</script>
+</body>
+</html>
